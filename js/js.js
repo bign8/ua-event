@@ -104,7 +104,7 @@ if (window.hasOwnProperty('jQuery')) {
 		});
 		jQuery('#profile_reset').click(function () {
 			document.profile.reset();
-			$('#actual_user_image').attr('src', 'data/usr/' + $('#orig_image').val());
+			$('#actual_user_image').attr('src', 'http://upstreamacademy.com/apps/' + $('#orig_image').val());
 		});
 	});
 }
