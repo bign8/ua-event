@@ -214,7 +214,7 @@ directive('memberships', ['ArrestDB', function (ArrestDB) {
 
 filter('myMember', function () {
 	return function (input, mem_str) {
-		var response = [], slug_arr = mem_str.toLowerCase().split(',');
+		var response = [], slug_arr = (mem_str || '').toLowerCase().split(',');
 		for (var i = 0, len = input.length; i < len; i++)
 			if ( slug_arr.indexOf(input[i].slug.toLowerCase()) > -1)
 				response.push(input[i]);

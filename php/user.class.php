@@ -23,6 +23,12 @@ class User {
 	public function __construct() {
 		if ( session_id() === '' ) session_start();
 		$this->db = myPDO::getInstance();
+
+		// Effectivley a cron
+		if ( rand() / getrandmax() < 0.1 ) { // run ~10% of the time
+			// Delete attendee for conferences that don't exist
+			$this->db->exec("DELETE FROM attendee WHERE conferenceID IN (SELECT DISTINCT conferenceID FROM attendee a WHERE a.conferenceID NOT IN (SELECT conferenceID FROM conference));");
+		}
 	}
 
 	public function login( $email, $pass ) {
